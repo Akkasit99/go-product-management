@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product - Product Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+        }
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        .form-container {
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="number"], input[type="file"], textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed #d1d5db;
+            background: #f9fafb;
+            cursor: pointer;
+        }
+        input[type="file"]:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .current-image-container {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .current-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .image-info {
+            font-size: 14px;
+            color: #64748b;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #3b82f6;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .header {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .form-container {
+                padding: 30px 20px;
+            }
+            .current-image {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-edit"></i> Edit Product</h1>
+            <p class="subtitle">Update product information</p>
+        </div>
+        
+        <div class="form-container">
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Products
+            </a>
+            
+            <form method="post" action="/edit" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{.ID}}">
+                
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-tag"></i> Product Name</label>
+                    <input type="text" id="name" name="name" value="{{.Name}}" placeholder="Enter product name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description"><i class="fas fa-align-left"></i> Description</label>
+                    <textarea id="description" name="description" placeholder="Enter product description (optional)">{{.Description}}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price"><i class="fas fa-dollar-sign"></i> Price</label>
+                    <input type="number" id="price" step="0.01" name="price" value="{{.Price}}" placeholder="0.00" required>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-image"></i> Product Image</label>
+                    {{if .Image}}
+                        <div class="current-image-container">
+                            <div class="image-info"><i class="fas fa-info-circle"></i> Current Image:</div>
+                            <img src="/{{.Image}}" alt="Current Product Image" class="current-image">
+                            <div class="image-info">Upload a new image to replace the current one, or leave empty to keep it</div>
+                        </div>
+                    {{else}}
+                        <div class="current-image-container">
+                            <div class="image-info"><i class="fas fa-exclamation-circle"></i> No current image</div>
+                            <div class="image-info">Upload an image for this product</div>
+                        </div>
+                    {{end}}
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-save"></i>
+                    Update Product
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
